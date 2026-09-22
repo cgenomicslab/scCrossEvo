@@ -1,15 +1,9 @@
 # scCrossEvo
 Single Cell Cross Species Evolutianary Pipeline
-
-This pipeline compares both the Cell atlases of Hydra Vulgarys (DOI: 10.1126/science.aav9314) and Nematostella Vectensis (https://doi.org/10.1186/s12983-024-00529-z). Scope of this was to find the 1-1 orthologs and see their evolutionary distance on the same space. In addition in order to find this we used different metrics TAI(Transcption Age Index) and a newly developed index TAI* which computes the expression-weighted mean of evolutionary gene ages (Phylostrata) across the shared 1:1 ortholog subset. With this we can weigth older genes and more newer in order to see in which  cell type an invhas been done. The older the genes are the smaller the index and the more newly the gene is the higehr the vaule.
-
-The value is based on a species ladder (which was made by orthofinder) . Where 1 is the clsoer the closest species to that specif organims and and then the max of value is based on the last and more lest common species on that specid ladder. 
-
-So , the better the speceis we choose to make the ladder the finer resuls we will get . 
-
-This indxing is based on a species ladder which were made by  orhofinder .
-
-
-This pipeline uses the Python's library Scanpy
-Psedobulk
-Diffeent approches for ortholog normalization (z-score on centorids as well as cluster each species independently, build pseudobulk centroids, correlate the centroids directly)
+A computational pipeline for cross-species comparative single-cell transcriptomics across 700 million years of evolutionary divergence (Hydra vulgaris vs. Nematostella vectensis). This workflow evaluates cell-type evolutionary dynamics by integrating a 1:1 orthology backbone with a Paralog-Weighted Principal Component Analysis (WPCA) and a single-cell-adapted Transcriptome Age Index (TAI*).
+Overview
+Standard single-cell batch integration algorithms (e.g., Harmony, Seurat CCA, scVI) treat evolutionary divergence as technical batch noise, forcing macroevolutionary differences to collapse into shared manifold space.
+This repository provides an alternative framework:
+Unforced Comparative Manifolds: Builds an anchored 1:1 orthology backbone across species, applying Weighted PCA (WPCA) scaled by gene family dynamism to retain authentic evolutionary divergence without artificial clustering collapse. 
+TAI*(Transcriptome Innovation Index): Extends classical phylotranscriptomic age indexing to single-cell data by incorporating multigene family expansion dynamics (log_2(1 +copies) and implementing an expression cap on single-gene transcriptomic monopolies.   
+Biological Validation: Resolves classical phylotranscriptomic artifacts, demonstrating that cnidarian cell-type novelty is governed by two distinct evolutionary strategies: Gene Family Expansion and Orphan Monoculture. 
